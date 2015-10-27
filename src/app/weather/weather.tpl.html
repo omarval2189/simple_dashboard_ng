@@ -1,0 +1,68 @@
+<div class="container-fluid section-container"  ng-controller="WeatherCtrl">
+    <div class="panel panel-primary panel-home section-title">
+        <div class="panel-heading">
+            <h3 class="panel-title">Weather</h3>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Select your City</span>
+                    <input type="text" ng-model="data.search">
+                    <button ng-click="searchCity(data.search);">enter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default weather-main-panel">
+        <div class="panel-body">
+            <div class="col-md-2 weather-menu-container">
+                <h2>Cities</h2>
+                <ul class="nav nav-pills nav-stacked weather-menu">
+                  <li role="presentation" ng-class="{active: data.active==1}"><a ng-click="getWeather('guadalajara,mx',1)">Guadalajara, MEX</a></li>
+                  <li role="presentation" ng-class="{active: data.active==2}"><a ng-click="getWeather('london,uk',2)">London, UK</a></li>
+                  <li role="presentation" ng-class="{active: data.active==3}"><a ng-click="getWeather('new york,usa',3)">New York, USA</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9 col-offset-1 weather-info">
+                <div class="panel-heading weather-panel">
+                    <div class="weather-city">{{data.city.name}}</div>
+                    <div class="weather-desc">
+                        <img src="http://openweathermap.org/img/w/{{data.city.weather.icon}}.png" alt="icon">
+                        <h4>{{data.city.weather.main}}</h4>
+                        <h5>{{data.city.weather.description}}</h5>    
+                    </div>
+                </div>
+                <table class="table table-striped m-b-none">
+                    <tbody>
+                        <tr>                    
+                            <td>Temp:</td>
+                            <td>{{data.city.main.temp}}</td>
+                        </tr>
+                        <tr>                    
+                            <td>Pressure:</td>
+                            <td>{{data.city.main.pressure}}</td>
+                        </tr>
+                        <tr>                    
+                            <td>Humidity:</td>
+                            <td>{{data.city.main.humidity}}</td>
+                        </tr>
+                        <tr>                    
+                            <td>Min Temp:</td>
+                            <td>{{data.city.main.temp_min}}</td>
+                        </tr>
+                        <tr>                    
+                            <td>Max Temp:</td>
+                            <td>{{data.city.main.temp_max}}</td>
+                        </tr>
+                        <tr>                    
+                            <td>Speed Wind:</td>
+                            <td>{{data.city.wind.speed}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

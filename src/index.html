@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
-  <head>
-    <title ng-bind="pageTitle"></title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-
-    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script><% }); %>
-
-    <!-- it's stupid to have to load it here, but this is for the +1 button -->
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-      { "parsetags": "explicit" }
-    </script>
-  </head>
-  <body>
-    <div class="container">
-    </div>
-
-    <div class="container" ui-view="main"></div>
-
-    <footer class="footer">
-      <div class="container">
-
-      </div>
-    </footer>
-  </body>
+<html ng-app="dashboard" ng-controller="AppCtrl">
+	<head>
+		<title ng-bind="pageTitle"></title>
+		<meta charset="utf-8">
+		<meta name="fragment" content="!">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+		<!-- font awesome from BootstrapCDN -->
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+		<link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+		<!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+		<script type="text/javascript" src="<%= file %>"></script><% }); %>
+		<!--<script type="text/javascript" src="assets/js/classie.js"></script>-->
+	</head>
+  	<body>
+        <nav class="menu">
+        	<h3>Menu</h3>	
+			<a href="#!/home" class="active">home</a><a href="#!/sheet">sheets</a>
+			<a href="#!/weather">weather</a>
+        </nav>
+	    <div class="container-fluid main-container">
+		    <div class="row title-container">
+		        <a class="btn-menu-reponsive" ng-click="toggleMenu(data.toggle)">
+		            <i class="fa fa-bars fa-3x" style="margin-left: 10px; color:#fff;"></i>
+		        </a>
+		        <div class="title-logo text-center">
+		            <img src="assets/img/logo-dashboard.png" alt="">    
+		        </div>
+		    </div>
+		    <div class="container-fluid" autoscroll="false" ui-view="main"></div>
+		</div>  
+		<footer></footer>
+	</body>
 </html>

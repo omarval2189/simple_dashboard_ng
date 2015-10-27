@@ -1,0 +1,40 @@
+<div class="container-fluid section-container"  ng-controller="SheetCtrl">
+    <div class="panel panel-primary panel-home section-title">
+        <div class="panel-heading">
+            <h3 class="panel-title">Sheets</h3>
+        </div>
+    </div>
+    <div class="panel panel-default table-container">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Add your contacts</span>
+                    <button type="button" class="btn btn-primary right" ng-click="addModal();">Add</button>
+                </div>
+            </div>
+        </div>
+        <table class="table-responsive table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr ng-show="data.contacts.length==0">
+                    <td colspan="5" class="text-center">Please add a new contact <button type="button" class="btn btn-primary" ng-click="addModal();">Add</button></td>
+                </tr>
+                <tr ng-repeat="contact in data.contacts">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.type}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" ng-click="deleteContact(contact.id);">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+//Bootstrap variables
+//@grid-float-breakpoint: @screen-md-min;
+
+//Mine variables
+@fontGeneral: 'Open Sans', sans-serif;
+@main-blue: #016FC3;
+@second-blue: #37AAE9;
+@white: #fff;
+@gray: #DDDDDD;
+
+
+//General styles
+*{
+	font-family: @fontGeneral;
+}
+
+p{
+	margin: 0;
+}
+
+a{
+	text-decoration: none;
+	&:hover{
+		text-decoration: none;		
+	}
+	&:active{
+		text-decoration: none;		
+	}
+}
+
+.white-space-pre{
+	white-space: pre-line;
+}
+.menu{
+  left: -220px;
+  background: @second-blue;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 220px;
+  z-index: 9999;
+  padding: 70px 20px 0;
+  font-size: 20px;
+  /*-webkit-transition: all 1s ease-in-out !important;
+  -moz-transition: all 1s ease-in-out !important;
+  -o-transition: all 1s ease-in-out !important;
+  transition: all 1s ease-in-out !important;*/
+  h3{
+    color: #afdefa;
+    font-size: 1.9em;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    background: @second-blue;
+  }
+  a{
+    color:@white;
+    display: block;
+    font-size: 1.1em;
+    font-weight: 300;
+    border-bottom: 1px solid #258ecd;
+    padding: 1em;
+    &.active{
+      color:@main-blue;
+      text-decoration: underline;
+    }
+    &:hover {
+      background: #258ecd;
+    }
+  }
+}
+
+.main-container{
+  background: #F0F3F4;
+  //color:@white;
+  position: relative;
+  .title-container{
+    background: @main-blue;
+    height: 60px;
+    .btn-menu-reponsive{
+      cursor: pointer;
+      margin-top: 8px;
+      float: left;
+    }
+    .title-logo{
+      margin: 0 auto;
+      width: 90%;
+      margin-top: 14px;
+    }
+  }
+  .section-container{
+    color:#000;
+    margin-top: 20px;
+    .section-title{
+      .panel-heading{
+        background: @main-blue !important;
+        border-color: @main-blue !important;
+      }
+    }
+  }
+}
+.left{
+  float: left;
+}
+.menu-left{
+  left:-220px;
+}
+.right{
+  float: right;
+}
+.cbp-spmenu-push{
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.animateBody{
+  left: 220px !important;
+    -webkit-transition: all 1s ease-in-out !important;
+  -moz-transition: all 1s ease-in-out !important;
+  -o-transition: all 1s ease-in-out !important;
+  transition: all 1s ease-in-out !important;
+}
+.animateMenu{
+  left: 0px !important;
+    -webkit-transition: all 1s ease-in-out !important;
+  -moz-transition: all 1s ease-in-out !important;
+  -o-transition: all 1s ease-in-out !important;
+  transition: all 1s ease-in-out !important;
+}

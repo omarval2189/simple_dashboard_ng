@@ -16,7 +16,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-coffeelint');
   grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-ng-annotate');
+  grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
 
   /**
@@ -45,9 +45,10 @@ module.exports = function ( grunt ) {
         '/**\n' +
         ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
         ' * <%= pkg.homepage %>\n' +
+        ' * Copyright (c) <%= grunt.template.today("yyyy") %>, <%= pkg.client %>\n' +
         ' *\n' +
-        ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-        ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
+        ' * Development by <%= pkg.author %>\n' +
+        ' * <%= pkg.devURL %>\n' +
         ' */\n'
     },
 
@@ -139,28 +140,12 @@ module.exports = function ( grunt ) {
           }
         ]
       },
-      build_vendorcss: {
-        files: [
-          {
-            src: [ '<%= vendor_files.css %>' ],
-            dest: '<%= build_dir %>/',
-            cwd: '.',
-            expand: true
-          }
-        ]
-      },
       compile_assets: {
         files: [
           {
             src: [ '**' ],
             dest: '<%= compile_dir %>/assets',
             cwd: '<%= build_dir %>/assets',
-            expand: true
-          },
-          {
-            src: [ '<%= vendor_files.css %>' ],
-            dest: '<%= compile_dir %>/',
-            cwd: '.',
             expand: true
           }
         ]
@@ -223,10 +208,10 @@ module.exports = function ( grunt ) {
     },
 
     /**
-     * `ngAnnotate` annotates the sources before minifying. That is, it allows us
+     * `ng-min` annotates the sources before minifying. That is, it allows us
      * to code without the array syntax.
      */
-    ngAnnotate: {
+    ngmin: {
       compile: {
         files: [
           {
@@ -300,7 +285,10 @@ module.exports = function ( grunt ) {
         noarg: true,
         sub: true,
         boss: true,
-        eqnull: true
+        eqnull: true,
+        loopfunc: true,
+        "-W099": true,
+        "-W041": false
       },
       globals: {}
     },
@@ -570,7 +558,7 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build', 'karmaconfig',
+    'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
     'karma:continuous' 
   ]);
 
@@ -579,7 +567,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
+    'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**
